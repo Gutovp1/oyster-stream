@@ -1,9 +1,9 @@
 export enum LonglineType {
-  SmallBuoy = "small-buoy",
-  BigBuoy = "big-buoy",
+  SmallBuoy = "small-buoy", // can have 280 containers
+  BigBuoy = "big-buoy", // can have 200 containers
 }
 
-export enum AcceptedLanternTypes {
+export enum AcceptedContainerTypes {
   Seed = "seed",
   Shell = "shell", // juvenile oyster
   Baby = "baby",
@@ -13,6 +13,6 @@ export enum AcceptedLanternTypes {
 
 export type LongLine = {
   position_at_farm: number;
-  accepted_lantern_types: AcceptedLanternTypes;
-  maximum_lanterns: number;
+  accepted_container_types: AcceptedContainerTypes;
+  maximum_containers: number;
 };
