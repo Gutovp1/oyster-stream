@@ -6,4 +6,5 @@ export type Tray = {
   oyster_quantity: number[];
   in_sea_started_at: Date;
   expected_maturation_at: Date;
+  batch: string;
 };
