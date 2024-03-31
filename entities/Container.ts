@@ -13,6 +13,7 @@ export enum ContainerType {
   Tray = "tray",
   Chilean = "chilean",
   Intermediate = "intermediate",
+  Definite = "definite",
   BabyStock = "baby-stock",
   MediumStock = "medium-stock",
   LargeStock = "large-stock",
@@ -20,6 +21,7 @@ export enum ContainerType {
 
 export type Container = {
   //Belong to longline
+  batch_id: number;
   position_at_longline: number[];
   container_type: ContainerType;
   oyster_type: OysterType;
@@ -27,5 +29,4 @@ export type Container = {
   oyster_quantity: number[];
   in_sea_started_at: Date;
   expected_maturation_at: Date;
-  batch: string;
 };
