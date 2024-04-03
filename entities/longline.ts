@@ -12,6 +12,7 @@ export enum AcceptedContainerTypes {
 }
 
 export type LongLine = {
+  type: LonglineType;
   position_at_farm: number;
   accepted_container_types: AcceptedContainerTypes;
   maximum_containers: number;
