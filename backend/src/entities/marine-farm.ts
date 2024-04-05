@@ -1,5 +1,5 @@
 import { Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Longline } from '../longline/longline';
+import { Longline } from './longline';
 
 @Entity()
 export class Marinefarm {

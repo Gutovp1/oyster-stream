@@ -5,8 +5,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Container } from '../container/container';
-import { Marinefarm } from '../marine-farm/marine-farm';
+import { Container } from './container';
+import { Marinefarm } from './marine-farm';
 
 export enum LonglineType {
   SmallBuoy = 'small-buoy', // can have 280 containers

@@ -1,12 +1,18 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { BatchesService } from './entities/batch/batch.service';
-import { BatchesController } from './entities/batch/batch.controller';
-import { Batch } from './entities/batch/batch';
-import { Container } from './entities/container/container';
-import { Longline } from './entities/longline/longline';
-import { Marinefarm } from './entities/marine-farm/marine-farm';
+import { BatchesService } from './services/batch.service';
+import { BatchesController } from './controller/batch.controller';
+import { Batch } from './entities/batch';
+import { Container } from './entities/container';
+import { Longline } from './entities/longline';
+import { Marinefarm } from './entities/marine-farm';
+import { ContainerService } from './services/container.service';
+import { LonglineService } from './services/longline.service';
+import { MarineFarmService } from './services/marine-farm.service';
+import { ContainerController } from './controller/container.controller';
+import { LonglineController } from './controller/longline.controller';
+import { MarineFarmController } from './controller/marine-farm.controller';
 
 @Module({
   imports: [
@@ -21,8 +27,19 @@ import { Marinefarm } from './entities/marine-farm/marine-farm';
       entities: [Batch, Container, Longline, Marinefarm],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([Container]),
   ],
-  providers: [BatchesService],
-  controllers: [BatchesController],
+  providers: [
+    BatchesService,
+    ContainerService,
+    LonglineService,
+    MarineFarmService,
+  ],
+  controllers: [
+    BatchesController,
+    ContainerController,
+    LonglineController,
+    MarineFarmController,
+  ],
 })
 export class AppModule {}
