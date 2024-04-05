@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { LonglineController } from './longline.controller';
+import { LonglineController } from '../controller/longline.controller';
 
 describe('LonglineController', () => {
   let controller: LonglineController;

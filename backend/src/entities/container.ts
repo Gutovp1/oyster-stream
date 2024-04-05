@@ -5,7 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Longline } from '../longline/longline';
+import { Longline } from './longline';
 
 export enum OysterType {
   Seed = 'seed',
