@@ -36,16 +36,4 @@ export class ContainerService {
       where: { expected_maturation_at: convertedDate },
     });
   }
-
-  async findAllOystersToMature(
-    type: OysterType,
-  ): Promise<{ oyster_quantity: number[]; expected_maturation_at: Date }[]> {
-    const containers = await this.containerRepository.find({
-      where: { oyster_type: type },
-    });
-    return containers.map((container) => ({
-      oyster_quantity: container.oyster_quantity,
-      expected_maturation_at: container.expected_maturation_at,
-    }));
-  }
 }
