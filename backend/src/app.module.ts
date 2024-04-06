@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { BatchesService } from './services/batch.service';
-import { BatchesController } from './controller/batch.controller';
+import { OysterService } from './services/oyster.service';
+import { OysterController } from './controller/oyster.controller';
 import { Batch } from './entities/batch';
 import { Container } from './entities/container';
 import { Longline } from './entities/longline';
@@ -30,13 +30,13 @@ import { MarineFarmController } from './controller/marine-farm.controller';
     TypeOrmModule.forFeature([Container]),
   ],
   providers: [
-    BatchesService,
+    OysterService,
     ContainerService,
     LonglineService,
     MarineFarmService,
   ],
   controllers: [
-    BatchesController,
+    OysterController,
     ContainerController,
     LonglineController,
     MarineFarmController,
