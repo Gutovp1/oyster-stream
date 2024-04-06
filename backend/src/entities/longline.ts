@@ -40,8 +40,8 @@ export class Longline {
   })
   type: LonglineType;
 
-  @Column()
-  position_at_farm: number;
+  @Column('simple-array')
+  position_at_farm: number[];
 
   @Column({
     type: 'enum',
