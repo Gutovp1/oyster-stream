@@ -28,7 +28,9 @@ export enum ContainerType {
   LargeStock = 'large-stock',
 }
 
-@Entity()
+@Entity({
+  name: 'container',
+})
 export class Container {
   //Belong to longline
   @PrimaryGeneratedColumn()

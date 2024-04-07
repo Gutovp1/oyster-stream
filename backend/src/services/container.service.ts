@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Container, OysterType } from 'src/entities/container';
+import { Container } from 'src/entities/container';
 
 @Injectable()
 export class ContainerService {
@@ -10,7 +10,10 @@ export class ContainerService {
     private readonly containerRepository: Repository<Container>,
   ) {}
 
-  async findAll(sort: string, page: number): Promise<Container[]> {
+  async findAll(
+    sort: string = 'expected_maturation_at',
+    page: number = 0,
+  ): Promise<Container[]> {
     return this.containerRepository.find({
       order: {
         expected_maturation_at:
@@ -21,15 +24,20 @@ export class ContainerService {
     });
   }
 
-  async findOne(containerId: number): Promise<Container> {
-    return this.containerRepository.findOne({ where: { id: containerId } });
+  async findOne(containerId: number = 1): Promise<Container> {
+    const container = this.containerRepository.findOne({
+      where: { id: containerId },
+    });
+    console.log('container ', container);
+    if (!container) {
+      throw new NotFoundException('Container not found. Try again.');
+    }
+    return container;
   }
 
-  // must ensure that "expected_maturation_at" does not contain a time component, but only date
   async findAllToday(): Promise<Container[]> {
     const today = new Date(); // 2024-04-05T00:00:00.000Z
     const formattedDate = today.toISOString().split('T')[0];
-
     const convertedDate = new Date(formattedDate);
 
     return this.containerRepository.find({

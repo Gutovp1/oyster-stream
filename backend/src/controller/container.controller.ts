@@ -1,4 +1,10 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { Container } from 'src/entities/container';
 import { ContainerService } from 'src/services/container.service';
 
@@ -14,13 +20,21 @@ export class ContainerController {
     return this.containerService.findAll(sort, page);
   }
 
-  @Get(':containerId')
-  async findOne(@Param('containerId') containerId: string): Promise<Container> {
-    return this.containerService.findOne(parseInt(containerId, 10));
-  }
-
   @Get('mature_today')
   async findAllToday(): Promise<Container[]> {
     return this.containerService.findAllToday();
+  }
+
+  @Get(':containerId')
+  async findOne(@Param('containerId') containerId: string): Promise<Container> {
+    const id = parseInt(containerId, 10);
+    if (isNaN(id)) {
+      throw new NotFoundException('Invalid containerId');
+    } else return this.containerService.findOne(id);
+  }
+
+  @Get('*')
+  async handleInvalidRoute(): Promise<string> {
+    throw new NotFoundException('Check the URL typed and try again.');
   }
 }
