@@ -19,11 +19,12 @@ export enum ContainerType {
   LargeStock = "large-stock",
 }
 
-export type Container = {
+export type OysterContainer = {
   //Belong to longline
-  batch_id: number;
+  longline_id: number;
+  oyster_batch_id: number;
   position_at_longline: number[];
-  container_type: ContainerType;
+  oyster_container_type: ContainerType;
   oyster_type: OysterType;
   level_partition_quantity: number; //level for lantern/tray and partition for box
   oyster_quantity: number[];
