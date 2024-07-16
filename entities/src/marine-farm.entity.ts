@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import { Longline } from "./longline.entity";
 
-@Entity({ name: " marinefarm" })
+@Entity({ name: "marinefarm" })
 export class MarineFarm {
   @PrimaryGeneratedColumn()
   id!: number;
