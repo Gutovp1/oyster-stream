@@ -8,7 +8,8 @@ import {
   OysterBatch,
   Longline,
   MarineFarm,
-} from '../../entities/dist';
+} from '@entities/index';
+// } from '../../entities/dist';
 import { OysterContainerModule } from './oyster-container/oyster-container.module';
 import { MarineFarmModule } from './marine-farm/marine-farm.module';
 import { LonglineModule } from './longline/longline.module';

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MarineFarmService } from './marine-farm.service';
 import { MarineFarmController } from './marine-farm.controller';
-import { MarineFarm } from '../../../entities/src/marine-farm.entity';
+import { MarineFarm } from '@entities/marine-farm.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

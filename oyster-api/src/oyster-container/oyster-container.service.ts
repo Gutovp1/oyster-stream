@@ -3,7 +3,7 @@ import { CreateOysterContainerDto } from './dto/create-oyster-container.dto';
 import { UpdateOysterContainerDto } from './dto/update-oyster-container.dto';
 // import { InjectRepository } from '@nestjs/typeorm';
 // import { Repository } from 'typeorm';
-// import { OysterContainer } from '../../../entities/src/oyster-container.entity';
+// import { OysterContainer } from '@entities/oyster-container.entity';
 
 @Injectable()
 export class OysterContainerService {
