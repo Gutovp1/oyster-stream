@@ -6,12 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  NotFoundException,
 } from '@nestjs/common';
 import { OysterContainerService } from './oyster-container.service';
 import { CreateOysterContainerDto } from './dto/create-oyster-container.dto';
 import { UpdateOysterContainerDto } from './dto/update-oyster-container.dto';
+import { OysterContainer } from '@entities/oyster-container.entity';
 
-@Controller('oyster-container')
+@Controller('oyster-containers')
 export class OysterContainerController {
   constructor(
     private readonly oysterContainerService: OysterContainerService,
@@ -23,13 +26,24 @@ export class OysterContainerController {
   }
 
   @Get()
-  findAll() {
-    return this.oysterContainerService.findAll();
+  async findAll(
+    @Query('sort') sort: string,
+    @Query('page') page: number,
+  ): Promise<OysterContainer[]> {
+    return this.oysterContainerService.findAll(sort, page);
+  }
+
+  @Get('mature_today')
+  async findAllToday(): Promise<OysterContainer[]> {
+    return this.oysterContainerService.findAllToday();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.oysterContainerService.findOne(+id);
+  async findOne(@Param('id') containerId: string): Promise<OysterContainer> {
+    const id = parseInt(containerId, 10);
+    if (isNaN(id)) {
+      throw new NotFoundException('Invalid containerId');
+    } else return this.oysterContainerService.findOne(id);
   }
 
   @Patch(':id')
@@ -43,5 +57,10 @@ export class OysterContainerController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.oysterContainerService.remove(+id);
+  }
+
+  @Get('*')
+  async handleInvalidRoute(): Promise<string> {
+    throw new NotFoundException('Check the URL typed and try again.');
   }
 }
