@@ -11,7 +11,7 @@ import { LonglineService } from './longline.service';
 import { CreateLonglineDto } from './dto/create-longline.dto';
 import { UpdateLonglineDto } from './dto/update-longline.dto';
 
-@Controller('longline')
+@Controller('longlines')
 export class LonglineController {
   constructor(private readonly longlineService: LonglineService) {}
 

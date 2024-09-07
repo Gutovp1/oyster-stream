@@ -12,7 +12,7 @@ import {
 import { OysterContainerService } from './oyster-container.service';
 import { CreateOysterContainerDto } from './dto/create-oyster-container.dto';
 import { UpdateOysterContainerDto } from './dto/update-oyster-container.dto';
-import { OysterContainer } from '@entities/oyster-container.entity';
+import { OysterContainer, OysterType } from '@entities/oyster-container.entity';
 
 @Controller('oyster-containers')
 export class OysterContainerController {
@@ -32,12 +32,6 @@ export class OysterContainerController {
   ): Promise<OysterContainer[]> {
     return this.oysterContainerService.findAll(sort, page);
   }
-
-  @Get('mature_today')
-  async findAllToday(): Promise<OysterContainer[]> {
-    return this.oysterContainerService.findAllToday();
-  }
-
   @Get(':id')
   async findOne(@Param('id') containerId: string): Promise<OysterContainer> {
     const id = parseInt(containerId, 10);
@@ -46,6 +40,17 @@ export class OysterContainerController {
     } else return this.oysterContainerService.findOne(id);
   }
 
+  @Get('mature-today')
+  async findAllToday(): Promise<OysterContainer[]> {
+    return this.oysterContainerService.findAllToday();
+  }
+
+  @Get('oysters-to-mature')
+  async findAllOystersToMature(
+    @Query('type') type: OysterType,
+  ): Promise<{ oyster_quantity: number[]; expected_maturation_at: Date }[]> {
+    return this.oysterContainerService.findAllOystersToMature(type);
+  }
   @Patch(':id')
   update(
     @Param('id') id: string,

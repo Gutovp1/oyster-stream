@@ -11,7 +11,7 @@ import { MarineFarmService } from './marine-farm.service';
 import { CreateMarineFarmDto } from './dto/create-marine-farm.dto';
 import { UpdateMarineFarmDto } from './dto/update-marine-farm.dto';
 
-@Controller('marine-farm')
+@Controller('marine-farms')
 export class MarineFarmController {
   constructor(private readonly marineFarmService: MarineFarmService) {}
 
