@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOysterContainerDto } from './dto/create-oyster-container.dto';
 import { UpdateOysterContainerDto } from './dto/update-oyster-container.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-// import { OysterContainer } from '../../../entities/src/oyster-container.entity';
+// import { InjectRepository } from '@nestjs/typeorm';
+// import { Repository } from 'typeorm';
+// import { OysterContainer } from '@entities/oyster-container.entity';
 
 @Injectable()
 export class OysterContainerService {
@@ -12,13 +12,12 @@ export class OysterContainerService {
   //   private readonly oysterContainerRepository: Repository<OysterContainer>,
   // ) {}
 
-  private readonly oyster_containers = [];
   create(createOysterContainerDto: CreateOysterContainerDto) {
     return 'This action adds a new oysterContainer';
   }
 
   findAll() {
-    return this.oyster_containers;
+    return `This action returns all oysterContainer`;
   }
 
   findOne(id: number) {

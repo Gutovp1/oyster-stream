@@ -3,10 +3,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { LonglineModule } from './longline/longline.module';
-import { MarineFarmModule } from './marine-farm/marine-farm.module';
+import {
+  OysterContainer,
+  OysterBatch,
+  Longline,
+  MarineFarm,
+} from '@entities/index';
+// } from '../../entities/dist';
 import { OysterContainerModule } from './oyster-container/oyster-container.module';
-
+import { MarineFarmModule } from './marine-farm/marine-farm.module';
+import { LonglineModule } from './longline/longline.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -17,12 +23,13 @@ import { OysterContainerModule } from './oyster-container/oyster-container.modul
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [__dirname + '@entities/dist/*.js'],
+      entities: [OysterContainer, OysterBatch, Longline, MarineFarm],
+      // entities: [__dirname + '/../../entities/dist/*.js'],
       synchronize: true,
     }),
-    LonglineModule,
-    MarineFarmModule,
     OysterContainerModule,
+    MarineFarmModule,
+    LonglineModule,
   ],
   controllers: [AppController],
   providers: [AppService],
