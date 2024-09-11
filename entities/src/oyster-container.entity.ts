@@ -7,6 +7,7 @@ import {
 } from "typeorm";
 
 import { Longline } from "./longline.entity";
+import { OysterBatch } from "./oyster-batch.entity";
 
 export enum OysterType {
   Seed = "seed",
@@ -40,6 +41,13 @@ export class OysterContainer {
 
   @Column()
   longline_id!: number;
+
+  @ManyToOne(
+    () => OysterBatch,
+    (oyster_batch) => oyster_batch.oyster_containers
+  )
+  @JoinColumn({ name: "oysterBatchId" })
+  oyster_batch!: OysterBatch;
 
   @Column()
   oyster_batch_id!: number;

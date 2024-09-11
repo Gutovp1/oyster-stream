@@ -36,7 +36,7 @@ export class Longline {
 
   @ManyToOne(() => MarineFarm, (marine_farm) => marine_farm.longlines)
   @JoinColumn({ name: "marinefarmId" })
-  marinefarm!: MarineFarm;
+  marine_farm!: MarineFarm;
 
   @Column({
     type: "enum",
@@ -44,6 +44,9 @@ export class Longline {
     default: LonglineType.SmallBuoy,
   })
   type!: LonglineType;
+
+  @Column()
+  marine_farm_id!: number;
 
   @Column("simple-array")
   position_at_farm!: number[];
