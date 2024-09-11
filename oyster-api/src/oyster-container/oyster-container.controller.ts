@@ -48,7 +48,13 @@ export class OysterContainerController {
   @Get('oysters-to-mature')
   async findAllOystersToMature(
     @Query('type') type: OysterType,
-  ): Promise<{ oyster_quantity: number[]; expected_maturation_at: Date }[]> {
+  ): Promise<
+    {
+      oyster_quantity: number[];
+      expected_maturation_at: Date;
+      oyster_batch_number: number;
+    }[]
+  > {
     return this.oysterContainerService.findAllOystersToMature(type);
   }
   @Patch(':id')

@@ -47,15 +47,21 @@ export class OysterContainerService {
     });
   }
 
-  async findAllOystersToMature(
-    type: OysterType,
-  ): Promise<{ oyster_quantity: number[]; expected_maturation_at: Date }[]> {
+  async findAllOystersToMature(type: OysterType): Promise<
+    {
+      oyster_quantity: number[];
+      expected_maturation_at: Date;
+      oyster_batch_number: number;
+    }[]
+  > {
     const containers = await this.oysterContainerRepository.find({
       where: { oyster_type: type },
+      relations: ['oyster_batch'],
     });
     return containers.map((container) => ({
       oyster_quantity: container.oyster_quantity,
       expected_maturation_at: container.expected_maturation_at,
+      oyster_batch_number: container.oyster_batch.oyster_batch_number,
     }));
   }
 
