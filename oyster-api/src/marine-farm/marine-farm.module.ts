@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { MarineFarmService } from './marine-farm.service';
-import { MarineFarmController } from './marine-farm.controller';
-import { MarineFarm } from '@entities/marine-farm.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MarineFarmController } from './marine-farm.controller';
+import { MarineFarmService } from './marine-farm.service';
+import { MarineFarm } from '@entities/marine-farm.entity';
+import { OysterContainer } from '@entities/oyster-container.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MarineFarm])],
+  imports: [TypeOrmModule.forFeature([MarineFarm, OysterContainer])],
   controllers: [MarineFarmController],
   providers: [MarineFarmService],
 })

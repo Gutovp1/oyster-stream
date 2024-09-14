@@ -20,14 +20,14 @@ export class MarineFarmController {
     return this.marineFarmService.create(createMarineFarmDto);
   }
 
+  @Get(':id')
+  async getFarmData(@Param('id') id: string) {
+    return this.marineFarmService.findOne(+id);
+  }
+
   @Get()
   findAll() {
     return this.marineFarmService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.marineFarmService.findOne(+id);
   }
 
   @Patch(':id')
