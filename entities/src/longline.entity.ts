@@ -38,6 +38,9 @@ export class Longline {
   @JoinColumn({ name: "marinefarmId" })
   marine_farm!: MarineFarm;
 
+  @Column()
+  marine_farm_id!: number;
+
   @Column({
     type: "enum",
     enum: LonglineType,
@@ -45,8 +48,12 @@ export class Longline {
   })
   type!: LonglineType;
 
-  @Column()
-  marine_farm_id!: number;
+  @Column({
+    type: "enum",
+    enum: AcceptedContainerTypes,
+    default: AcceptedContainerTypes.Baby,
+  })
+  accepted_container_types!: AcceptedContainerTypes[];
 
   @Column("simple-array")
   position_at_farm!: number[];
