@@ -65,8 +65,13 @@ export class OysterContainerService {
     }));
   }
 
-  create(createOysterContainerDto: CreateOysterContainerDto) {
-    return 'This action adds a new oysterContainer';
+  async create(
+    createOysterContainerDto: CreateOysterContainerDto,
+  ): Promise<OysterContainer> {
+    const newContainer = this.oysterContainerRepository.create(
+      createOysterContainerDto,
+    );
+    return await this.oysterContainerRepository.save(newContainer);
   }
 
   update(id: number, updateOysterContainerDto: UpdateOysterContainerDto) {

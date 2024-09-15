@@ -21,7 +21,9 @@ export class OysterContainerController {
   ) {}
 
   @Post()
-  create(@Body() createOysterContainerDto: CreateOysterContainerDto) {
+  async create(
+    @Body() createOysterContainerDto: CreateOysterContainerDto,
+  ): Promise<OysterContainer> {
     return this.oysterContainerService.create(createOysterContainerDto);
   }
 
